@@ -72,7 +72,7 @@ def commits_data():
         # En cas d'erreur
         return jsonify({'error': str(e)})
       #Route Commit
-    @app.route('/commit/')
+@app.route('/commit/')
 def graph_commits():
     return render_template("commit.html")
   
