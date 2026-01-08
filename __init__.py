@@ -40,7 +40,7 @@ def tawaranographique():
 @app.route('/commits-data/')
 def commits_data():
     # Correction effectuée : suppression des accolades {}
-    url = 'https://api.github.com/Chaxob/5MCSI_Metriques/commit'
+    url = 'https://github.com/Chaxob/5MCSI_Metriques/commit'
     
     try:
         response = urlopen(url)
