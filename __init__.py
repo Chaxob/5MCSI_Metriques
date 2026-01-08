@@ -40,7 +40,7 @@ def tawaranographique():
 @app.route('/commits-data/')
 def commits_data():
     # Correction effectuée : suppression des accolades {}
-    url = 'https://api.github.com/repos/Chaxob/5MCSI_Metriques/commit'
+    url = 'https://api.github.com/repos/Chaxob/5MCSI_Metriques/commits'
     
     try:
         response = urlopen(url)
@@ -61,7 +61,8 @@ def commits_data():
                 compteur_minutes[minute] += 1
             else:
                 compteur_minutes[minute] = 1
-         # On formate les résultats pour le graphique (liste triée)
+        
+        # On formate les résultats pour le graphique (liste triée)
         results = []
         for minute, nombre in sorted(compteur_minutes.items()):
             results.append({'minute': minute, 'count': nombre})
@@ -71,10 +72,11 @@ def commits_data():
     except Exception as e:
         # En cas d'erreur
         return jsonify({'error': str(e)})
-      #Route Commit
-@app.route('/commit/')
+
+# --- EXERCICE 6 : LA PAGE D'AFFICHAGE ---
+@app.route('/commits/')
 def graph_commits():
-    return render_template("commit.html")
+    return render_template("commits.html")
   
 if __name__ == "__main__":
   app.run(debug=True)
