@@ -1,1 +1,49 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(loadData);
+
+      function loadData() {
+        fetch('/tawarano/')
+          .then(response => response.json())
+          .then(data => drawChart(data.results))
+          .catch(err => console.error("Erreur API :", err));
+      }
+
+      function drawChart(apiData) {
+        // On construit le tableau dans le format Google Charts
+        const tableData = [['Jour', 'Température (°C)']];
+
+        apiData.forEach(item => {
+          // Ici dt = timestamp, on peut le formater si besoin
+          const day = new Date(item.Jour * 1000).toLocaleDateString();
+          tableData.push([day, item.temp]);
+        });
+
+        const data = google.visualization.arrayToDataTable(tableData);
+
+        const options = {
+          title: "Évolution des températures",
+          legend: { position: 'none' },
+          animation: {
+            startup: true,
+            duration: 1000
+          }
+        };
+
+        const chart = new google.visualization.Histogram(
+          document.getElementById('chart_div')
+        );
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <h3>Météo</h3>
+    <div id="chart_div" style="width: 900px; height: 500px;"></div>
+  </body>
+</html>
 
