@@ -37,7 +37,7 @@ def tawaranographique():
     return render_template("histogramme.html")
   #Exo 6 
 # --- EXERCICE 6 : API DE DONNÉES GITHUB ---
-@app.route('/commit/')
+@app.route('/commits-data/')
 def commits_data():
     # Correction effectuée : suppression des accolades {}
     url = 'https://api.github.com/repos/Chaxob/5MCSI_Metriques/commit'
@@ -70,7 +70,11 @@ def commits_data():
         
     except Exception as e:
         # En cas d'erreur
-        return jsonify({'error': str(e)})     
+        return jsonify({'error': str(e)})
+      #Route Commit
+    @app.route('/commit/')
+def graph_commits():
+    return render_template("commit.html")
   
 if __name__ == "__main__":
   app.run(debug=True)
