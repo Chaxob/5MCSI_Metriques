@@ -37,7 +37,7 @@ def tawaranographique():
     return render_template("histogramme.html")
   #Exo 6 
 # --- EXERCICE 6 : API DE DONNÉES GITHUB ---
-@app.route('/commits-data/')
+@app.route('/commit/')
 def commits_data():
     # Correction effectuée : suppression des accolades {}
     url = 'https://api.github.com/repos/TonyESGI/5MCSI_Metriques/commits'
